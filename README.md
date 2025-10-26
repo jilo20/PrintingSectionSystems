@@ -11,11 +11,9 @@ The system not only simplifies the printing request process but also enhances ti
 <br></br>
 
 Login Page
-
-<br></br>
-
 ![alt text](loginPage.png)
 
 <br></br>
 
-![alt text](loginPage.png)
+Home Page
+![alt text](homePageUI.png)
