@@ -7,3 +7,15 @@ The system not only simplifies the printing request process but also enhances ti
 
 <br></br>
 ![alt text](umlDiagram.png)
+
+<br></br>
+
+Login Page
+
+<br></br>
+
+![alt text](loginPage.png)
+
+<br></br>
+
+![alt text](loginPage.png)
