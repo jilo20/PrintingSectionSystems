@@ -40,7 +40,7 @@ class AuthController extends Controller
             'lname' => 'required|max:100|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|max:255|confirmed',
-            'deptId' => 'required|integer',
+            'department' => 'required|integer',
             'role' => 'required|integer'
         ]);
 
