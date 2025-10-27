@@ -53,10 +53,10 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // $incomingFields = $request->validate([
-        //     'email' => 'required|email',
-        //     'password' => 'required'
-        // ]);
+        $incomingFields = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
         // if (Auth::attempt($incomingFields)) {
         //     $request->session()->regenerate();
@@ -69,9 +69,15 @@ class AuthController extends Controller
         //     }
         // }
 
-        // return back()->withErrors([
-        //     'email' => 'Invalid credentials',
-        // ])->onlyInput('email');
+        if (Auth::attempt($incomingFields)) {
+            $request->session()->regenerate();
+            return redirect()->route('show.reads.home');
+        }
+
+        return back()->withErrors([
+            'email' => 'Invalid credentials',
+        ])->onlyInput('email');
+        // return view('auth.login');
     }
 
     public function logout(Request $request)
@@ -80,5 +86,9 @@ class AuthController extends Controller
         // $request->session()->invalidate();
         // $request->session()->regenerateToken();
         // return redirect()->route('show.login');
+    }
+
+    public function showReadsHome(){
+        return view('dashboards.reads-dashboard');
     }
 }
