@@ -1,1 +1,5 @@
-<h1>Reads Dashboard</h1>
+<x-header-auth>
+    
+</x-header-auth>
+
+{{-- FIX THE LOGOUT BUTTON --}}
