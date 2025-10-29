@@ -10,7 +10,9 @@
                 <x-input-text name="old password" placeholder=" Old Password" type="password"/>
                 <x-input-text name="new password" placeholder=" New Password" type="password"/>
                 <x-input-text name="confirm password" placeholder=" Confirm Password" type="password"/>
-                <p class="flex w-full justify-between -mt-2"><x-link-button href="{{ route('show.login') }}">Back to Login</x-link-button> <x-link-button>Confirm Password</x-link-button></p>
+                <p class="flex w-full justify-between -mt-2">
+                    <x-link-button>Back to Login</x-link-button> 
+                    <x-link-button>Confirm Password</x-link-button></p>
                 <x-mainbutton class="w-32 h-12 self-center mt-10">Login</x-mainbutton>
             </form>
         </x-card>
