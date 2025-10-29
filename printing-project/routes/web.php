@@ -14,3 +14,6 @@ Route::post('/register', [AuthController::class,'register'])->name('register');
 
 Route::get('/readshome', [AuthController::class,'showReadsHome'])->name('show.reads.home');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/resetpass', [AuthController::class,'resetpass'])->name('show.resetpass');
+Route::post('/resetpass', [AuthController::class, 'resetpass'])->name('resetpass');

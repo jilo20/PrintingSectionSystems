@@ -8,7 +8,7 @@
                 @csrf
                 <x-input-text name="email" placeholder="Email" retain="true" type="email"/>
                 <x-input-text name="password" placeholder="Password" type="password"/>
-                <p class="flex w-full justify-between -mt-2"><x-link-button>Forgot Password?</x-link-button> <x-link-button>Create Account</x-link-button></p>
+                <p class="flex w-full justify-between -mt-2"><x-link-button href="{{ route('show.resetpass') }}">Forgot Password?</x-link-button> <x-link-button>Create Account</x-link-button></p>
                 <x-mainbutton class="w-32 h-12 self-center mt-10">Login</x-mainbutton>
             </form>
         </x-card>

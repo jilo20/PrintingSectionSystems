@@ -91,4 +91,8 @@ class AuthController extends Controller
     public function showReadsHome(){
         return view('dashboards.reads-dashboard');
     }
+
+    public function resetpass(){
+        return view('auth.resetpass');
+    }
 }
