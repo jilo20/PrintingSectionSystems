@@ -7,7 +7,6 @@
             <form action="{{ route('resetpass') }}" method="post" class="flex flex-col w-[25em] gap-4">
                 @csrf
                 <x-input-text name="email" placeholder="Email" retain="true" type="email"/>
-                <x-input-text name="old password" placeholder=" Old Password" type="password"/>
                 <x-input-text name="new password" placeholder=" New Password" type="password"/>
                 <x-input-text name="confirm password" placeholder=" Confirm Password" type="password"/>
                 <p class="flex w-full justify-between -mt-2">
