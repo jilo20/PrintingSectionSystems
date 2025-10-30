@@ -95,4 +95,8 @@ class AuthController extends Controller
     public function resetpass(){
         return view('auth.resetpass');
     }
+    public function about() {
+    return view('about.about');
+    }
+
 }

@@ -17,3 +17,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/resetpass', [AuthController::class,'resetpass'])->name('show.resetpass');
 Route::post('/resetpass', [AuthController::class, 'resetpass'])->name('resetpass');
+
+Route::get('/about', [AuthController::class,'about'])->name('show.about');
+Route::post('/about', [AuthController::class, 'about'])->name('about');
