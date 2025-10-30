@@ -92,10 +92,11 @@ class AuthController extends Controller
         return view('dashboards.reads-dashboard');
     }
 
-    public function resetpass(){
+    public function showResetPass(){
         return view('auth.resetpass');
     }
-    public function about() {
+
+    public function showAbout() {
     return view('about.about');
     }
 

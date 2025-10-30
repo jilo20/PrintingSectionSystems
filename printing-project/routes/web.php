@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/login', [AuthController::class,'showLogin'])->name('show.login');
@@ -15,8 +15,8 @@ Route::post('/register', [AuthController::class,'register'])->name('register');
 Route::get('/readshome', [AuthController::class,'showReadsHome'])->name('show.reads.home');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/resetpass', [AuthController::class,'resetpass'])->name('show.resetpass');
+Route::get('/resetpass', [AuthController::class,'showResetPass'])->name('show.resetpass');
 Route::post('/resetpass', [AuthController::class, 'resetpass'])->name('resetpass');
 
-Route::get('/about', [AuthController::class,'about'])->name('show.about');
-Route::post('/about', [AuthController::class, 'about'])->name('about');
+Route::get('/about', [AuthController::class,'showAbout'])->name('show.about');
+// Route::post('/about', [AuthController::class, 'about'])->name('about');
