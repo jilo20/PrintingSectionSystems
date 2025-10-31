@@ -8,7 +8,7 @@
         {{ $triggerName }}
     </button>
 
-    <div class="flex flex-col w-full origin-top scale-y-0 bg-gray-100 border border-borderline2 shadow-md w-[10rem] absolute top-12 opacity-0 group-hover:opacity-100 group-hover:scale-y-100 transition-all duration-800 text-left w-full">
+    <div class="flex flex-col w-full origin-top scale-y-0 bg-gray-100 border border-borderline2 shadow-md w-[10rem] absolute top-12 opacity-0 group-hover:opacity-100 group-hover:scale-y-100 transition-all duration-[.4s] text-left w-full ease-in-out" >
         {{ $slot }}
     </div>
     
