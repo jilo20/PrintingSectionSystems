@@ -11,6 +11,15 @@
     <div class="w-full flex justify-center">
         <x-card class="mt-20 w-[30em] flex flex-col items-center gap-4">
             <h1 class="text-3xl font-bold">Create an account</h1>
+            @if($errors->any())
+                <div class="text-center bg-red-200 text-red-600 w-full py-6 rounded-md">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="decoration-none">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route("register") }}" class="w-full flex flex-col gap-6" method="post">
                 @csrf
                 <x-input-text placeholder="First Name" name="fname" retain=true/>

@@ -3,7 +3,7 @@
 </head>
 
 <x-header-guest>
-    <div class="flex flex-col items-center justify-center min-h-[80vh] px-6 text-center">
+    <div class="flex flex-col items-center justify-center min-h-[80vh] px-6 text-center mt-12 mb-12">
         <x-card class="max-w-3xl flex flex-col items-center gap-6 p-10 shadow-lg bg-white">
             <img src="{{ asset('images/usjrlogo.png') }}" alt="USJR Logo" class="w-28 h-28">
 
