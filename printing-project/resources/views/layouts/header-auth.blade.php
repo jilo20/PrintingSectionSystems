@@ -17,7 +17,3 @@
         </x-dropdown>
     </nav>
 </header>
-
-<body>  
-    {{ $slot }}
-</body>

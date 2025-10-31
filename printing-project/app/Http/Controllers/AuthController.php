@@ -97,7 +97,7 @@ class AuthController extends Controller
     }
 
     public function showAbout() {
-    return view('about.about');
+    return view('about');
     }
 
 }

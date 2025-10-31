@@ -14,7 +14,3 @@
             </div>
         </nav>
 </header>
-
-<body>
-    {{ $slot }}
-</body>

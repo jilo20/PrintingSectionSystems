@@ -1,5 +1,3 @@
-<x-header-auth>
-    
-</x-header-auth>
+@include ('layouts.header-auth')
 
 {{-- FIX THE LOGOUT BUTTON --}}
