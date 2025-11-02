@@ -30,8 +30,13 @@ class RequestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'requested_by' => 'required|string|max:255',
-            'details' => 'nullable|string',
+            'original' => 'integer',
+            'copies' => 'integer',
+            'type_of_paper' => 'integer',
+            'is_b2b' => 'boolean',
+            'description' => 'string|max:100',
+            'forwarded_by' => 'string|max:50',
+            'requested_by' => 'string|max:50'
         ]);
 
         RequestModel::create($request->all());

@@ -19,8 +19,11 @@
     </select>
 
     <!-- RISOGRAPH -->
-    <div id="riso" class="grid grid-cols-2 gap-2 w-64 hidden mt-4">
+    <div id="riso" class="grid grid-cols-2 gap-2 w-[40em] hidden mt-4">
         <h3 class="col-span-2 font-bold">RISOGRAPH</h3>
+        
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description">
 
         <label for="original">Original</label>
         <input type="number" id="original" name="original" min="0">
@@ -31,10 +34,13 @@
         <label for="type_of_paper">Type of Paper</label>
         <input type="text" id="type_of_paper" name="type_of_paper">
 
-        <label for="isB2B">
-            <input type="checkbox" id="isB2B" name="isB2B" value="1">
+        <label for="is_b2b">
+            <input type="checkbox" id="is_b2b" name="is_b2b" value="1">
             B2B
         </label>
+
+        
+        <br>
 
         <label for="forwarded_by">Forwarded By</label>
         <input type="text" id="forwarded_by" name="forwarded_by">

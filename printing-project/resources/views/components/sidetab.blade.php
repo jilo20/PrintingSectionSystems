@@ -29,16 +29,16 @@
         </div>
 
         <div class="flex flex-col text-primary font-semibold space-y-0 self-start pl-10">
-            <a class="block py-4 hover:px-20 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="/readshome">
                 Dashboard
             </a>
-            <a class="block py-4 hover:px-20 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="/requests">
                 Request
             </a>
-            <a class="block py-4 hover:px-20 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
                 Messaging
             </a>
-            <a class="block py-4 hover:px-20 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
                 About
             </a>
         </div>

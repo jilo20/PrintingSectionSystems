@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RequestController;
 
 Route::get('/', function () {
-    return view('components.sidetab');
+    return view('auth.login');
 });
 
 Route::get('/login', [AuthController::class,'showLogin'])->name('show.login');

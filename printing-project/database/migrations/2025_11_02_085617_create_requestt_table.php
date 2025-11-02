@@ -28,7 +28,7 @@ return new class extends Migration
             // Service-specific fields (nullable where not used)
             $table->integer('original')->nullable();
             $table->integer('copies')->nullable();
-            $table->string('type_of_paper')->nullable();
+            $table->tinyInteger('type_of_paper')->nullable();
             $table->boolean('is_b2b')->nullable(); // Back-to-back option
 
             // Department relationship
