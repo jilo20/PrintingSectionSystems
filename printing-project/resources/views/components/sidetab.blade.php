@@ -15,7 +15,17 @@
 <div 
     id="overlay" 
     class="fixed top-0 left-0 h-full w-[20rem] bg-secondary opacity-0 scale-x-0 origin-left transition-all duration-500 pointer-events-none z-50"
-></div>
+>   
+    {{-- profile --}}
+    <div>
+        <img src="{{ asset('images/fblogo.png') }}" alt="">
+    </div>
+
+    {{-- tabs --}}
+    <div>
+        <link-button>Dashboard</link-button>
+    </div>
+</div>
 
 <script>
     const burger = document.getElementById('burgerBtn');

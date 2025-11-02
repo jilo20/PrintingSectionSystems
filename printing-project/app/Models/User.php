@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Department;
-use App\Models\Requests;
+use App\Models\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,12 +48,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
-/*
+
     public function requests()
     {
-        return $this->hasMany(Requests::class);
+        return $this->hasMany(Request::class);
     }
-*/
+
 
     protected function casts(): array
     {
