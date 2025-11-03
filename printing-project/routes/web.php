@@ -13,7 +13,7 @@ Route::get('/register', [AuthController::class,'showRegister'])->name('show.regi
 Route::post('/login', [AuthController::class,'login'])->name('login');
 Route::post('/register', [AuthController::class,'register'])->name('register');
 
-Route::get('/readshome', [AuthController::class,'showReadsHome'])->name('show.reads.home');
+Route::get('/readshome', [AuthController::class,'showHome'])->name('show.home');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/resetpass', [AuthController::class,'showResetPass'])->name('show.resetpass');

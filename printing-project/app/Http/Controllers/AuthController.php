@@ -29,6 +29,7 @@ class AuthController extends Controller
         // ->where('deptId',$userDeptId)
         // ->get();
         // return view('home', compact('requests','departments'));
+        return view('dashboards.dashboard');
 
     }
 
@@ -70,7 +71,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($incomingFields)) {
             $request->session()->regenerate();
-            return redirect()->route('show.reads.home');
+            return redirect()->route('show.home');
         }
 
         return back()->withErrors([
@@ -87,9 +88,9 @@ class AuthController extends Controller
         return redirect()->route('show.login');
     }
 
-    public function showReadsHome(){
-        return view('dashboards.reads-dashboard');
-    }
+    // public function showHome(){
+    //     return view('dashboards.dashboard');
+    // }
 
     public function showResetPass(){
         return view('auth.resetpass');
