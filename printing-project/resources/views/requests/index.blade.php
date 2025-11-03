@@ -45,7 +45,7 @@
                     </div>
 
                     <!-- Right Column -->
-                    <div class="grid grid-cols-[auto,1fr] gap-x-2 text-right">
+                    <div class="grid grid-cols-[auto,1fr] gap-x-2 text-left">
                         <p class="font-medium text-gray-600">Status:</p>         <p>{{ $request->status }}</p>
                         <p class="font-medium text-gray-600">Requested by:</p>   <p>{{ $request->requested_by }}</p>
                         <p class="font-medium text-gray-600">Forwarded by:</p>   <p>{{ $request->forwarded_by }}</p>
