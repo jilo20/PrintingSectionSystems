@@ -21,6 +21,7 @@
                 <div class="bg-yellow-300 text-gray-900 font-bold text-lg mb-3 px-3 py-2 rounded-md shadow-inner">
                     {{ $request->description }}
                 </div>
+                <p>Department: {{ $request->department->name ?? 'No Department' }}</p>
 
                 <div class="text-gray-700 text-sm space-y-1">
                     <p>Original: {{ $request->original }} | Copies: {{ $request->copies }} | B2B: {{ $request->is_b2b }}</p>
