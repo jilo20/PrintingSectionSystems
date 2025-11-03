@@ -1,56 +1,65 @@
+<!-- Burger Button -->
+<img 
+    id="burgerBtn" 
+    src="{{ asset('images/menu-burger.png') }}" 
+    alt="Menu" 
+    class="h-8 w-8 cursor-pointer z-[100]">
+
+<!-- Dim Background -->
 <div 
-    x-data="{ open: false }" 
-    class="fixed top-0 left-0 h-screen bg-[#F4B629] shadow-lg flex flex-col transition-all duration-300"
-    :class="open ? 'w-64' : 'w-16'"
->
-    <!-- Toggle Button -->
-    <button @click="open = !open" class="p-3 z-50 relative self-end">
-        <img src="{{ asset('images/menu-burger.png') }}" alt="Menu" 
-             class="transition-all duration-300" 
-             :class="open ? 'h-6 w-6' : 'h-5 w-5'">
-    </button>
+    id="backdrop" 
+    class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300 z-40"
+></div>
 
-    <!-- Profile Section -->
-    <div x-show="open" x-transition class="flex flex-col items-center mt-6 px-2 text-center">
-        <img src="{{ asset('images/profile.jpg') }}" alt="Profile" 
-             class="rounded-full w-16 h-16 border-2 border-white mb-2">
-        <div class="text-sm font-bold text-green-900">USERNAME</div>
-        <div class="text-xs text-gray-800">username@email.com</div>
-    </div>
+<!-- Sidebar / Overlay -->
+<div 
+    id="overlay" 
+    class="fixed top-0 left-0 h-full w-[20rem] bg-secondary opacity-0 scale-x-0 origin-left transition-all duration-500 pointer-events-none z-50">
+    <div class="flex flex-col items-center mt-24 gap-4">
+        <div>
+            <img class=" w-24 h-24 rounded-full obj-cover" src="{{ asset('images/piolo.png') }}" alt="">
+        </div>
+        <div class="flex flex-col items-center text-primary">
+            <h1 class="text-xl font-bold uppercase">{{ Auth::user()->fname }}</h1>
+            <p class="text-gray-800">{{ Auth::user()->email }}</p>
+        </div>
 
-    <!-- Menu Section -->
-    <div class="flex-1 px-2 mt-6">
-        <!-- Menu Header -->
-        <div x-show="open" x-transition 
-             class="bg-green-900 text-white text-center py-2 rounded-md mb-2 font-bold text-sm">
+        <div class="bg-primary text-gray-100 px-32 py-2 rounded-md mt-6">
             Menu
         </div>
 
-        <!-- Menu Items -->
-        <ul class="flex flex-col space-y-3 text-green-900 list-none">
-            <li class="flex items-center">
-                <i class="fa-solid fa-house w-5"></i>
-                <span x-show="open" x-transition class="ml-2 text-sm font-medium">Dashboard</span>
-            </li>
-            <li class="flex items-center">
-                <i class="fa-solid fa-briefcase w-5"></i>
-                <span x-show="open" x-transition class="ml-2 text-sm font-medium">Request Job</span>
-            </li>
-            <li class="flex items-center">
-                <i class="fa-solid fa-calculator w-5"></i>
-                <span x-show="open" x-transition class="ml-2 text-sm font-medium">Accounts</span>
-            </li>
-            <li class="flex items-center">
-                <i class="fa-solid fa-envelope w-5"></i>
-                <span x-show="open" x-transition class="ml-2 text-sm font-medium">Messaging</span>
-            </li>
-            <li class="flex items-center">
-                <i class="fa-solid fa-gear w-5"></i>
-                <span x-show="open" x-transition class="ml-2 text-sm font-medium">Settings</span>
-            </li>
-        </ul>
+        <div class="flex flex-col text-primary font-semibold space-y-0 self-start pl-10">
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="/readshome">
+                Dashboard
+            </a>
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="/requests">
+                Request
+            </a>
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
+                Messaging
+            </a>
+            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
+                About
+            </a>
+        </div>
+
+        
     </div>
 </div>
 
-<!-- Include Alpine.js globally (once in your main layout) -->
-<script src="//unpkg.com/alpinejs" defer></script>
+<script>
+    const burger = document.getElementById('burgerBtn');
+    const overlay = document.getElementById('overlay');
+    const backdrop = document.getElementById('backdrop');
+
+    function toggleMenu() {
+        overlay.classList.toggle('opacity-0');
+        overlay.classList.toggle('scale-x-0');
+        overlay.classList.toggle('pointer-events-none');
+        backdrop.classList.toggle('opacity-0');
+        backdrop.classList.toggle('pointer-events-none');
+    }
+
+    burger.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', toggleMenu);
+</script>
