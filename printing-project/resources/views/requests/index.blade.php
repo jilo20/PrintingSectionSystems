@@ -2,41 +2,61 @@
 
 @include('layouts.header-auth')
 
-<div class="flex flex-col gap-10 mt-10 items-center">
+<div class="flex flex-col items-center gap-10 mt-10">
+
+    {{-- Create Request Button --}}
     <a 
         href="/requests/create"
-        class="block bg-secondary p-4 w-40 font-bold text-gray-800 
-               hover:bg-primary hover:text-gray-100 
-               transition-all duration-400 rounded-lg shadow-sm"
+        class="block bg-secondary p-4 w-40 text-center font-bold text-gray-800 
+               hover:bg-primary hover:text-white 
+               transition-all duration-300 rounded-lg shadow-md"
     >
         Create Request
     </a>
 
-    <div class="flex flex-col gap-6 w-full items-center">
+    {{-- Request List --}}
+    <div class="flex flex-col items-center gap-6 w-full">
         @foreach ($requests as $request)
-            <div class="p-6 pl-8 bg-gray-50 w-[30em] border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
-                <p class="text-sm text-gray-500 mb-1">#{{ $request->id }}</p>
+            <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 w-[30em]">
+                
+                {{-- Request ID --}}
+                <p class="text-xs text-gray-400 mb-1">Request #{{ $request->id }}</p>
 
-                <!-- Yellow box for description -->
-                <div class="bg-yellow-300 text-gray-900 font-bold text-lg mb-3 px-3 py-2 rounded-md shadow-inner">
+                {{-- Description --}}
+                <div class="bg-yellow-300 text-gray-900 font-semibold text-lg mb-4 px-4 py-2 rounded-lg shadow-inner text-center">
                     {{ $request->description }}
                 </div>
 
-                <div class="text-gray-700 text-sm space-y-1">
-                    <p>Original: {{ $request->original }} | Copies: {{ $request->copies }} | B2B: {{ $request->is_b2b }}</p>
-                    <p>Type of paper: {{ $request->type_of_paper }}</p>
-                    <p>Status: {{ $request->status }}</p>
-                    <p>Received by: {{ $request->received_by }}</p>
-                    <p>Requested by: {{ $request->requested_by }}</p>
-                    <p>Forwarded by: {{ $request->forwarded_by }}</p>
+                {{-- Details Section --}}
+                <div class="flex justify-between text-gray-700 text-sm">
+                    
+                    {{-- Left Column --}}
+                    <div class="space-y-1">
+                        <p><span class="font-medium text-gray-600">Original:</span> {{ $request->original }}</p>
+                        <p><span class="font-medium text-gray-600">Copies:</span> {{ $request->copies }}</p>
+                        <p><span class="font-medium text-gray-600">B2B:</span> {{ $request->is_b2b }}</p>
+                        <p><span class="font-medium text-gray-600">Type of paper:</span> {{ $request->type_of_paper }}</p>
+                    </div>
+
+                    {{-- Right Column --}}
+                    <div class="space-y-1 text-right">
+                        <p><span class="font-medium text-gray-600">Status:</span> {{ $request->status }}</p>
+                        
+                        <p><span class="font-medium text-gray-600">Requested by:</span> {{ $request->requested_by }}</p>
+                        <p><span class="font-medium text-gray-600">Forwarded by:</span> {{ $request->forwarded_by }}</p>
+                        <p><span class="font-medium text-gray-600">Received by:</span> {{ $request->received_by }}</p>
+                    </div>
                 </div>
 
-                <a 
-                    href="/requests/{{ $request->id }}/edit" 
-                    class="inline-block mt-3 text-blue-700 hover:text-blue-500 underline text-sm font-medium"
-                >
-                    Edit
-                </a>
+                {{-- Edit Link --}}
+                <div class="mt-4 text-right">
+                    <a 
+                        href="/requests/{{ $request->id }}/edit" 
+                        class="text-blue-600 hover:text-blue-500 underline text-sm font-medium"
+                    >
+                        Edit
+                    </a>
+                </div>
             </div>
         @endforeach
     </div>
