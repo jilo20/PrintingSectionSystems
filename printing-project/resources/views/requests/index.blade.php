@@ -18,19 +18,25 @@
     <div class="flex flex-col items-center gap-6 w-full">
         @foreach ($requests as $request)
             <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 w-[30em]">
-                
-                {{-- Request ID --}}
+
+                <!-- Request ID -->
                 <p class="text-xs text-gray-400 mb-1">Request #{{ $request->id }}</p>
 
-                {{-- Description --}}
+                <!-- Description -->
                 <div class="bg-yellow-300 text-gray-900 font-semibold text-lg mb-4 px-4 py-2 rounded-lg shadow-inner text-center">
                     {{ $request->description }}
                 </div>
 
-                {{-- Details Section --}}
+                <!-- Department -->
+                <p class="mb-3 text-sm text-gray-700">
+                    <span class="font-medium text-gray-600">Department:</span>
+                    {{ $request->department->name ?? 'No Department' }}
+                </p>
+
+                <!-- Details Grid -->
                 <div class="flex justify-between text-gray-700 text-sm">
-                    
-                    {{-- Left Column --}}
+
+                    <!-- Left Column -->
                     <div class="space-y-1">
                         <p><span class="font-medium text-gray-600">Original:</span> {{ $request->original }}</p>
                         <p><span class="font-medium text-gray-600">Copies:</span> {{ $request->copies }}</p>
@@ -38,17 +44,14 @@
                         <p><span class="font-medium text-gray-600">Type of paper:</span> {{ $request->type_of_paper }}</p>
                     </div>
 
-                    {{-- Right Column --}}
-                    <div class="space-y-1 text-right">
-                        <p><span class="font-medium text-gray-600">Status:</span> {{ $request->status }}</p>
-                        
-                        <p><span class="font-medium text-gray-600">Requested by:</span> {{ $request->requested_by }}</p>
-                        <p><span class="font-medium text-gray-600">Forwarded by:</span> {{ $request->forwarded_by }}</p>
-                        <p><span class="font-medium text-gray-600">Received by:</span> {{ $request->received_by }}</p>
+                    <!-- Right Column -->
+                    <div class="grid grid-cols-[auto,1fr] gap-x-2 text-right">
+                        <p class="font-medium text-gray-600">Status:</p>         <p>{{ $request->status }}</p>
+                        <p class="font-medium text-gray-600">Requested by:</p>   <p>{{ $request->requested_by }}</p>
+                        <p class="font-medium text-gray-600">Forwarded by:</p>   <p>{{ $request->forwarded_by }}</p>
+                        <p class="font-medium text-gray-600">Received by:</p>    <p>{{ $request->received_by }}</p>
                     </div>
                 </div>
-
-                {{-- Edit Link --}}
                 <div class="mt-4 text-right">
                     <a 
                         href="/requests/{{ $request->id }}/edit" 
@@ -61,6 +64,7 @@
         @endforeach
     </div>
 </div>
+
 
 
 

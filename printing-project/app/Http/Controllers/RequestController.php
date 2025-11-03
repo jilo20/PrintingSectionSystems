@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Request as RequestModel;
 
 class RequestController extends Controller
@@ -13,7 +15,8 @@ class RequestController extends Controller
     public function index()
     {
         $requests = RequestModel::all();
-        return view('requests.index', compact('requests'));
+        $departments = Department::all();
+        return view('requests.index', compact('requests', 'departments'));
     }
 
     /**
@@ -38,6 +41,7 @@ class RequestController extends Controller
             'forwarded_by' => 'string|max:50',
             'requested_by' => 'string|max:50'
         ]);
+        $request['department_id'] = Auth::user()->department;
 
         RequestModel::create($request->all());
 
