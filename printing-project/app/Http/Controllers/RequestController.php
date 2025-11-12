@@ -15,10 +15,10 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $requestforms = RequestForm::all();
-        $requestjobs = RequestJob::all();
         $departments = Department::all();
-        return view('requests.index', compact('requestforms', 'requestjobs', 'departments'));
+        $requestforms = RequestForm::with('requestJobs')->get();
+
+        return view('requests.index', compact('requestforms', 'departments'));
     }
 
     /**
