@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Request as RequestModel;
+use App\Models\RequestForm;
+use App\Models\RequestJob;
 
 class RequestController extends Controller
 {
@@ -14,9 +15,10 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $requests = RequestModel::all();
+        $requestforms = RequestForm::all();
+        $requestjobs = RequestJob::all();
         $departments = Department::all();
-        return view('requests.index', compact('requests', 'departments'));
+        return view('requests.index', compact('requestforms', 'requestjobs', 'departments'));
     }
 
     /**
@@ -35,15 +37,13 @@ class RequestController extends Controller
         $request->validate([
             'original' => 'integer',
             'copies' => 'integer',
-            'type_of_paper' => 'integer',
-            'is_b2b' => 'boolean',
+            'paperType' => 'integer',
+            'isB2B' => 'integer',
             'description' => 'string|max:100',
-            'forwarded_by' => 'string|max:50',
-            'requested_by' => 'string|max:50'
         ]);
-        $request['department_id'] = Auth::user()->department;
+        $request['deptId'] = Auth::user()->department;
 
-        RequestModel::create($request->all());
+        RequestJob::create($request->all());
 
         return redirect()->route('requests.index')->with('success', 'Request added successfully!');
     }
@@ -53,7 +53,7 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $requestData = RequestModel::findOrFail($id);
+        $requestData = RequestForm::findOrFail($id);
         return view('requests.show', compact('requestData'));
     }
 

@@ -4,28 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('userId'); // BIGINT UNSIGNED PK
             $table->string('fname');
             $table->string('lname');
-            $table->string('email');
             $table->string('password');
-            $table->tinyInteger('department');
-            $table->tinyInteger('role')->default(3);
+            $table->foreignId('deptId') // BIGINT UNSIGNED FK
+                  ->references('deptId')
+                  ->on('departments')
+                  ->cascadeOnDelete()
+                  ->cascadeOnUpdate();
+            $table->tinyInteger('role')->default(2); // 0=Admin,1=OfficeHead,2=Staff,3=READS
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');

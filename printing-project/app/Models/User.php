@@ -2,60 +2,25 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Department;
-use App\Models\Request;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'fname',
-        'lname',
-        'email',
-        'password',
-        'department',
-        'role'
-    ];
+    protected $primaryKey = 'userId';
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $fillable = ['fname', 'lname', 'email', 'password', 'deptId', 'role'];
 
-
+    // Relationships
     public function department()
     {
-        return $this->belongsTo(Department::class, 'department', 'id');
+        return $this->belongsTo(Department::class, 'deptId', 'deptId');
     }
 
-
-    public function requests()
+    public function requestForms()
     {
-        return $this->hasMany(Request::class);
-    }
-
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(RequestForm::class, 'userId', 'userId');
     }
 }

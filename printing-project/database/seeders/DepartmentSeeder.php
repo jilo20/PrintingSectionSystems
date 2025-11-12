@@ -13,12 +13,12 @@ class DepartmentSeeder extends Seeder
     public function run(): void
     {
         $departments = [
-            ['name' => 'Property Administrator Office Main (PAO)'],
-            ['name' => 'Property Administrator Office Basak (PAO)'],
-            ['name' => 'Bookstore Main'],
-            ['name' => 'Bookstore Basak'],
-            ['name' => 'PAO Stock'],
-            ['name' => 'Printing Section'],
+            ['deptName' => 'Property Administrator Office Main (PAO)'],
+            ['deptName' => 'Property Administrator Office Basak (PAO)'],
+            ['deptName' => 'Bookstore Main'],
+            ['deptName' => 'Bookstore Basak'],
+            ['deptName' => 'PAO Stock'],
+            ['deptName' => 'Printing Section'],
         ];
 
         foreach ($departments as $dept) {

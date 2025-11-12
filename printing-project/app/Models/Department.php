@@ -2,25 +2,25 @@
 
 namespace App\Models;
 
-use App\Models\Request;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
-{   
-    protected $table = "departments";
-    protected $fillable = [
-        'name'
-    ];
+{
+    use HasFactory;
 
+    protected $primaryKey = 'deptId';
+
+    protected $fillable = ['deptName'];
+
+    // Relationships
     public function users()
     {
-        return $this->hasMany(User::class, 'department', 'id');
+        return $this->hasMany(User::class, 'deptId', 'deptId');
     }
 
-    public function requests()
+    public function requestForms()
     {
-        return $this->hasMany(Request::class, 'department_id', 'id');
+        return $this->hasMany(RequestForm::class, 'deptId', 'deptId');
     }
-
-
 }

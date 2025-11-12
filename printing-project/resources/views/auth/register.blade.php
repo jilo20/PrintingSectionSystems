@@ -29,8 +29,19 @@
             <x-input-text placeholder="Email" name="email" retain=true type="email"/>
             <x-input-text placeholder="Password" name="password" type="password"/>
             <x-input-text placeholder="Password" name="password_confirmation" type="password"/>
-            <x-single-select name="department" :data="$departments"/>
-            <x-single-select name="role" :data="$roles"/>
+            <x-single-select 
+                name="deptId" 
+                :data="$departments" 
+                dataId="deptId" 
+                dataName="deptName"
+            />
+            <x-single-select 
+                name="role" 
+                :data="$roles" 
+                dataId="id" 
+                dataName="name"
+            />
+
             <x-mainbutton class="w-64 self-center h-12">Register</x-mainbutton>
         </form>
     </x-card>

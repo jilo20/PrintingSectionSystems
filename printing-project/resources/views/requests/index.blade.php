@@ -2,68 +2,64 @@
 
 @include('layouts.header-auth')
 
-<div class="flex flex-col items-center gap-10 mt-10">
-
+<div class="flex flex-col items-center mt-10 w-full">
+    
     {{-- Create Request Button --}}
-    <a 
-        href="/requests/create"
-        class="block bg-secondary p-4 w-40 text-center font-bold text-gray-800 
-               hover:bg-primary hover:text-white 
-               transition-all duration-300 rounded-lg shadow-md"
-    >
+    <a href="/requests/create"
+       class="block bg-secondary p-4 w-40 text-center font-bold text-gray-800 
+              hover:bg-primary hover:text-white 
+              transition-all duration-300 rounded-lg shadow-md">
         Create Request
     </a>
 
     {{-- Request List --}}
-    <div class="flex flex-col items-center gap-6 w-full">
-        @foreach ($requests as $request)
-            <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 w-[30em]">
+    <div class="flex justify-center w-full mt-6">
 
-                <!-- Request ID -->
-                <p class="text-xs text-gray-400 mb-1">Request #{{ $request->id }}</p>
-
-                <!-- Description -->
-                <div class="bg-yellow-300 text-gray-900 font-semibold text-lg mb-4 px-4 py-2 rounded-lg shadow-inner text-center">
-                    {{ $request->description }}
+        <div class="border border-gray-300 w-[90%] min-w-[60rem] p-5 shadow-lg flex flex-col gap-2">
+            
+            <div class="border-2 border-blue-300 p-3  bg-gray-100 shadow-lg rounded-lg">
+                <div class="flex justify-between items-center gap-4">
+                    <p class="font-light text-gray-400">Request: 32x8ujwy</p>
+                    <h1 class="p-2 bg-green-800 text-white font-semibold text-2xl flex-1 text-center">
+                        School of Computer Studies
+                    </h1>
+                    <p class="p-2 bg-yellow-300 text-gray-800">6/28/2005</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
                 </div>
 
-                <!-- Department -->
-                <p class="mb-3 text-sm text-gray-700">
-                    <span class="font-medium text-gray-600">Department:</span>
-                    {{ $request->department->name ?? 'No Department' }}
-                </p>
-
-                <!-- Details Grid -->
-                <div class="flex justify-between text-gray-700 text-sm">
-
-                    <!-- Left Column -->
-                    <div class="space-y-1">
-                        <p><span class="font-medium text-gray-600">Original:</span> {{ $request->original }}</p>
-                        <p><span class="font-medium text-gray-600">Copies:</span> {{ $request->copies }}</p>
-                        <p><span class="font-medium text-gray-600">B2B:</span> {{ $request->is_b2b }}</p>
-                        <p><span class="font-medium text-gray-600">Type of paper:</span> {{ $request->type_of_paper }}</p>
-                    </div>
-
-                    <!-- Right Column -->
-                    <div class="grid grid-cols-[auto,1fr] gap-x-2 text-left">
-                        <p class="font-medium text-gray-600">Status:</p>         <p>{{ $request->status }}</p>
-                        <p class="font-medium text-gray-600">Requested by:</p>   <p>{{ $request->requested_by }}</p>
-                        <p class="font-medium text-gray-600">Forwarded by:</p>   <p>{{ $request->forwarded_by }}</p>
-                        <p class="font-medium text-gray-600">Received by:</p>    <p>{{ $request->received_by }}</p>
-                    </div>
+                <div class="flex justify-between mt-4 overflow-hidden mb-4">
+                    <p class="flex-1 text-center">Requested By: <span class="underline"><br>John Leeroy Gadiane</span> </p>
+                    <p class="flex-1 text-center">Forwarded By: <span class="underline"><br>Josh Rostata</span> </p>
+                    <p class="flex-1 text-center">Received By: <span class="underline"><br>Edwin Allanic</span></p>
+                    <p class="flex-1 text-center">Approved By: <span class="underline"><br>Mrs. Cuizon</span></p>
                 </div>
-                <div class="mt-4 text-right">
-                    <a 
-                        href="/requests/{{ $request->id }}/edit" 
-                        class="text-blue-600 hover:text-blue-500 underline text-sm font-medium"
-                    >
-                        Edit
-                    </a>
+                
+                <div class="flex w-full bg-green-400 justify-between text-center py-2 font-semibold">
+                    <div class="flex-1">OriginalxCopies</div>
+                    <div class="flex-1">Paper Type</div>
+                    <div class="flex-1">isB2B</div>
+                    <div class="flex-1">Description</div>
+                    <div class="flex-1">Service Type</div>
+                    <div class="flex-1">Cost</div>
+                </div>
+                <div class="flex w-full bg-gray-100 border-b border-gray-300 justify-between text-sm text-center py-2 font-base">
+                    <div class="flex-1">3x512</div>
+                    <div class="flex-1">US Bondpaper</div>
+                    <div class="flex-1">Yes</div>
+                    <div class="flex-1">First Periodical Exam in Math</div>
+                    <div class="flex-1">Risograph</div>
+                    <div class="flex-1">&#x20B1;1500</div>
                 </div>
             </div>
-        @endforeach
+            
+        </div>
+
     </div>
+
 </div>
+
 
 
 

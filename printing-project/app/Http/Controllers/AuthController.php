@@ -22,7 +22,7 @@ class AuthController extends Controller
     }
 
     public function showHome()
-    {   
+    {
         // $userDeptId = Auth::user()->deptId;
         // $departments = Department::all();
         // $requests = Requests::with('department')
@@ -40,7 +40,7 @@ class AuthController extends Controller
             'lname' => 'required|max:100|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|max:255|confirmed',
-            'department' => 'required|integer',
+            'deptId' => 'required|integer',
             'role' => 'required|integer'
         ]);
 
@@ -92,12 +92,14 @@ class AuthController extends Controller
     //     return view('dashboards.dashboard');
     // }
 
-    public function showResetPass(){
+    public function showResetPass()
+    {
         return view('auth.resetpass');
     }
 
-    public function showAbout() {
-    return view('about');
+    public function showAbout()
+    {
+        return view('about');
     }
 
 }
