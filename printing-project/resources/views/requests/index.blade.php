@@ -65,10 +65,14 @@
                         </div>
                         <div class="flex-1">{{ $job->isB2B ? 'Yes' : 'No' }}</div>
                         <div class="flex-1">{{ $job->description ?? 'N/A' }}</div>
-                        <div class="flex-1">{{ $job->serviceType ?? 'Risograph' }}</div>
+                        <div class="flex-1">{{ $job->service_type }}</div>
                         <div class="flex-1">&#x20B1;{{ number_format($job->cost, 2) }}</div>
                     </div>
                     @endforeach
+                        <div class="bg-yellow-200 w-full flex justify-between px-6 border-t border-yellow-900">
+                            <span class="flex-1">Total Cost =</span> 
+                            <span class="text-center w-24">&#x20B1;{{$requestform->totalCost}}</span>
+                        </div>
 
                     <div class="flex justify-around mt-4 font-light">
                         <p>Time in: {{ $requestform->timeIn ?? '—' }}</p>

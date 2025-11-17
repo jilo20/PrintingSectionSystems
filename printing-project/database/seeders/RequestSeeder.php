@@ -16,9 +16,9 @@ class RequestSeeder extends Seeder
         DB::table('request_forms')->insert([
             [
                 'receivedBy' => null,
-                'forwardedBy' => 'Josh Rostata',
-                'requestedBy' => 'John Leeroy Gadiane',
-                'approvedBy' => 'Mrs. Quizon',
+                'forwardedBy' => 'Edwin Allanic',
+                'requestedBy' => 'Maria Lorna Miro',
+                'approvedBy' => 'John Leeroy Gadiane',
                 'timeIn' => now(), // current datetime
                 'timeOut' => null,
                 'date' => now()->toDateString(), // optional if you want the date column

@@ -34,19 +34,26 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'original' => 'integer',
-            'copies' => 'integer',
-            'paperType' => 'integer',
-            'isB2B' => 'integer',
-            'description' => 'string|max:100',
+        // Create request form
+        $form = RequestForm::create([
+            'requestedBy' => $request->requestedBy,
+            'forwardedBy' => $request->forwardedBy,
+            // other form fields...
         ]);
-        $request['deptId'] = Auth::user()->department;
 
-        RequestJob::create($request->all());
+        // Save jobs
+        foreach ($request->jobs as $jobData) {
+            $form->requestJobs()->create([
+                'originals' => $jobData['originals'],
+                'copies' => $jobData['copies'],
+                'serviceType' => $jobData['serviceType'],
+                'isB2B' => $jobData['isB2B'],
+            ]);
+        }
 
-        return redirect()->route('requests.index')->with('success', 'Request added successfully!');
+        return redirect()->route('requests.create')->with('success', 'Request created!');
     }
+
 
     /**
      * Display the specified resource.
