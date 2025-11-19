@@ -19,7 +19,7 @@
             @foreach ($requestforms as $requestform)
             
             <div class="border-2 border-blue-300 p-3 bg-gray-100 shadow-lg rounded-lg cursor-pointer">
-                <div class="flex justify-between items-center gap-4" id="clickable">
+                <div class="flex justify-between items-center gap-4 clickable">
                     <p class="font-light text-gray-400">Request ID: {{ $requestform->requestFormId }}</p>
                     <h1 class="p-2 bg-green-800 text-white font-semibold text-2xl flex-1 text-center">
                         {{ $requestform->department->deptName ?? 'N/A' }}
@@ -30,7 +30,7 @@
                     </svg>
                 </div>
 
-                <div class="max-h-0 transition-[max-height] duration-500 overflow-hidden" id="panel">
+                <div class="max-h-0 transition-[max-height] duration-500 overflow-hidden panel">
                     <div class="flex justify-between mt-4 overflow-hidden mb-4">
                         <p class="flex-1 text-center">Requested By: <span class="underline"><br>{{ $requestform->requestedBy }}</span></p>
                         <p class="flex-1 text-center">Forwarded By: <span class="underline"><br>{{ $requestform->forwardedBy }}</span></p>
@@ -90,16 +90,15 @@
 </div>
 
 <script>
-    let clickable = document.getElementById('clickable');
-    let panel = document.getElementById('panel');
-    clickable.addEventListener('click',function(){
-        
+    document.querySelectorAll('.clickable').forEach((clickable) => {
+    clickable.addEventListener('click', function() {
+        // find the panel that is a sibling of this clickable
+        let panel = this.nextElementSibling;
         if(panel.style.maxHeight){
-            // Collapse
-            panel.style.maxHeight = null;
+            panel.style.maxHeight = null; // collapse
         } else {
-            // Expand
-            panel.style.maxHeight = panel.scrollHeight + "px";
+            panel.style.maxHeight = panel.scrollHeight + "px"; // expand
         }
     });
+});
 </script>

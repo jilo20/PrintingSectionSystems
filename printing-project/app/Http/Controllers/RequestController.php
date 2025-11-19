@@ -34,25 +34,36 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        // Create request form
+        // Step 1: create the request form
         $form = RequestForm::create([
             'requestedBy' => $request->requestedBy,
             'forwardedBy' => $request->forwardedBy,
-            // other form fields...
+            'deptId'      => auth()->user()->deptId, // or whatever
+            'date'        => now(),
+            'userId'        => Auth::user()->userId,
+            'timeIn' => now()
+            // totalCost later
         ]);
 
-        // Save jobs
-        foreach ($request->jobs as $jobData) {
-            $form->requestJobs()->create([
-                'originals' => $jobData['originals'],
-                'copies' => $jobData['copies'],
-                'serviceType' => $jobData['serviceType'],
-                'isB2B' => $jobData['isB2B'],
+        // Step 2: loop through job arrays
+        $count = count($request->originals);
+
+        for ($i = 0; $i < $count; $i++) {
+            RequestJob::create([
+                'requestFormId' => $form->requestFormId,
+                'originals'     => $request->originals[$i],
+                'copies'        => $request->copies[$i],
+                'paperType'     => $request->paperType[$i],
+                'isB2B'         => $request->isB2B[$i],
+                'service_type'  => $request->service_type[$i],
+                'description'   => $request->description[$i],
+                'cost'          => 0, // calculate later
             ]);
         }
 
-        return redirect()->route('requests.create')->with('success', 'Request created!');
+        return redirect()->back()->with('success', 'Request created!');
     }
+
 
 
     /**
