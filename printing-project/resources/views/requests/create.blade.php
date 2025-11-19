@@ -60,30 +60,94 @@
         let newjob =  document.createElement('div');
         let jobs = document.getElementsByClassName('jobs');
         newjob.innerHTML = `
-            <div class="grid grid-cols-7 mt-2 gap-2 jobs">
-                <input type="text" name="originals[]" class="border p-1" placeholder="# of originals">
-                <input type="text" name="copies[]" class="border p-1" placeholder="# of copies">
-                <select name="paperType[]">
-                    <option value="" selected>Select a Paper Type</option>
-                    <option value="0">US Bondpaper</option>
-                    <option value="1">Newsprint Paper</option>
-                    <option value="2">Color Bondpaper</option>
+            <div class="job-row grid grid-cols-7 mt-2 gap-2 jobs">
+                <input type="text" name="originals[]" class="originals border p-1" placeholder="# of originals">
+                <input type="text" name="copies[]" class="copies border p-1" placeholder="# of copies">
+                <select name="paperType[]" class="paperType">                    <option value="0">US Bondpaper Long</option>
+                    <option value="1">Newsprint Paper Long</option>
+                    <option value="2">Color Bondpaper Long</option>
+                    <option value="3">US Bondpaper Short</option>
+                    <option value="4">Newsprint Paper Short</option>
+                    <option value="5">Color Bondpaper Short</option>
+                    <option value="6" hidden>Long</option>
+                    <option value="7" hidden>Short</option>
                 </select>
-                <select name="isB2B[]">
+                <select name="isB2B[]" class="isB2B">
                     <option value="0" >No</option>
                     <option value="1" >Yes</option>
                 </select>
-                <select name="service_type[]">
+                <select name="service_type[]" class="service_type">
                     <option value="RISOGRAPH" >RISOGRAPH</option>
                     <option value="PHOTOCOPY" >PHOTOCOPY</option>
                     <option value="LAMINATION">LAMINATION</option>
                     <option value="SORT">SORT</option>
                 </select>
-                <input type="text" name="description[]" class="border p-1 col-span-2">
+                <input type="text" name="description[]" class="description border p-1 col-span-2">
             </div>
+
         `;
         jobstable.append(newjob);
     });
 
+    document.addEventListener('change', function(e) {
+        if (e.target && e.target.classList.contains('service_type')) {
+            let row = e.target.closest('.job-row'); // only the same row
+            console.log(row.querySelector('.service_type'));
+            let copies = row.querySelector('.copies');
+            let isB2B = row.querySelector('.isB2B');
+            let paperType = row.querySelector('.paperType');
+
+            if (e.target.value === "LAMINATION") {
+                copies.disabled = true;
+                copies.style.opacity = '.2';
+                isB2B.disabled = true;
+                isB2B.style.opacity = '.2';
+                paperType.innerHTML = `
+                    <option value="6">Long</option>
+                    <option value="7">Short</option>`;
+            } 
+            else if(e.target.value == "SORT")
+            {
+                copies.disabled = false;
+                isB2B.disabled = true;
+                isB2B.style.opacity = '.2';
+                paperType.disabled = true;
+                paperType.style.opacity = '.2';
+            }
+            else if(e.target.value == "PHOTOCOPY")
+            {
+                copies.disabled = false;
+                copies.style.opacity = '1';
+                isB2B.disabled = false;
+                isB2B.style.opacity = '1';
+                paperType.disabled = false;
+                paperType.style.opacity = '1';
+                paperType.innerHTML = `
+                    <option value="1">Newsprint Paper Long</option>
+                    <option value="2">Color Bondpaper Long</option>
+                    <option value="3">US Bondpaper Short</option>
+                    <option value="4">Newsprint Paper Short</option>
+                    <option value="5">Color Bondpaper Short</option>`;
+            }
+            else {
+                copies.disabled = false;
+                copies.style.opacity = '1';
+                isB2B.disabled = false;
+                isB2B.style.opacity = '1';
+                paperType.disabled = false;
+                paperType.style.opacity = '1';
+                paperType.innerHTML = `
+                    <option value="1">Newsprint Paper Long</option>
+                    <option value="2">Color Bondpaper Long</option>
+                    <option value="3">US Bondpaper Short</option>
+                    <option value="4">Newsprint Paper Short</option>
+                    <option value="5">Color Bondpaper Short</option>`;
+            }
+        }
+    });
 </script>
 
+
+
+{{-- ADD A DYNAMIC DISABLER CHANGING OPTIONS OF PAPERTYPE. just delete the papertype and make new --}}
+{{-- ADJUST THE OPTIONS NOT IN THE RIGHT value --}}
