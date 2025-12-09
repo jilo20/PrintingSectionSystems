@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RequestController;
 
@@ -23,3 +24,6 @@ Route::get('/about', [AuthController::class,'showAbout'])->name('show.about');
 
 //Home
 Route::resource('requests', RequestController::class);
+Route::post('/requestforms/{id}/complete', [RequestController::class, 'markCompleted'])
+    ->name('requestforms.complete');
+Route::get('/messaging', [HomeController::class,'showMessage'])->name('show.message');

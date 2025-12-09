@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Department;
-use Illuminate\Http\Request;
+use App\Models\RequestForm;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -23,13 +24,21 @@ class AuthController extends Controller
 
     public function showHome()
     {
-        // $userDeptId = Auth::user()->deptId;
-        // $departments = Department::all();
+        $userDeptId = Auth::user()->deptId;
+        $departments = Department::all();
         // $requests = Requests::with('department')
         // ->where('deptId',$userDeptId)
         // ->get();
         // return view('home', compact('requests','departments'));
-        return view('dashboards.dashboard');
+
+        if(Auth::user()->role === 3){
+            $requests = RequestForm::with(['requestJobs','department'])
+            ->where('deptId',$userDeptId)
+            ->get();
+            return view('dashboards.dashboard', compact('departments','requests'));
+        }
+        $requests = RequestForm::with(['requestJobs','department'])->get();
+        return view('dashboards.dashboard', compact('requests'));
 
     }
 

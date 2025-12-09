@@ -32,6 +32,17 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    public function markCompleted($id)
+    {
+        $requestForm = RequestForm::findOrFail($id);
+        $requestForm->status = 'Completed';          
+        $requestForm->save();                      
+
+        return redirect()->back();                   
+    }
+
+
     public function store(Request $request)
     {
         // Step 1: create the request form
@@ -41,6 +52,7 @@ class RequestController extends Controller
             'deptId'      => auth()->user()->deptId, // or whatever
             'date'        => now(),
             'userId'        => Auth::user()->userId,
+            'status' => 'In Progress',
             'timeIn' => now()
             // totalCost later
         ]);

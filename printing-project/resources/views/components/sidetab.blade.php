@@ -1,65 +1,69 @@
-<!-- Burger Button -->
-<img 
-    id="burgerBtn" 
-    src="{{ asset('images/menu-burger.png') }}" 
-    alt="Menu" 
-    class="h-8 w-8 cursor-pointer z-[100]">
 
-<!-- Dim Background -->
-<div 
-    id="backdrop" 
-    class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300 z-40"
-></div>
 
-<!-- Sidebar / Overlay -->
-<div 
-    id="overlay" 
-    class="fixed top-0 left-0 h-full w-[20rem] bg-secondary opacity-0 scale-x-0 origin-left transition-all duration-500 pointer-events-none z-50">
-    <div class="flex flex-col items-center mt-24 gap-4">
-        <div>
-            <img class=" w-24 h-24 rounded-full obj-cover" src="{{ asset('images/piolo.png') }}" alt="">
-        </div>
-        <div class="flex flex-col items-center text-primary">
-            <h1 class="text-xl font-bold uppercase">{{ Auth::user()->fname }}</h1>
-            <p class="text-gray-800">{{ Auth::user()->email }}</p>
-        </div>
+<div class="bg-primary w-[5em] h-full py-4 px-4 origin-left sidebar overflow-hidden transition-all duration-500 fixed">
+    <div class="w-full flex relative cursor-pointer btn">
+        <img 
+            src="{{ asset('images/menu.png') }}" 
+            alt="Menu" 
+            class="h-10 w-10 transition-all duration-500">
+    </div>
 
-        <div class="bg-primary text-gray-100 px-32 py-2 rounded-md mt-6">
-            Menu
+    <div id="disappear" class="opacity-0 transition-all duration-500">
+        <div class="w-[24em] flex items-center justify-center flex-col mt-10 gap-4 origin-center">
+            <div>
+                <img src="{{ asset('images/piolo.png') }}" class="object-cover rounded-full h-32 w-32">
+            </div>
+            <div class="text-center">
+                <p class="font-bold text-gray-100 text-center text-2xl uppercase">
+                    {{ Auth::user()->fname  }} {{ Auth::user()->lname }}
+                </p>
+                <p class="text-gray-100 text-sm font-light">
+                    {{ Auth::user()->email }}
+                </p>
+            </div>
         </div>
 
-        <div class="flex flex-col text-primary font-semibold space-y-0 self-start pl-10">
-            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="/readshome">
-                Dashboard
-            </a>
-            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="/requests">
-                Request
-            </a>
-            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
-                Messaging
-            </a>
-            <a class="block py-4 hover:px-10 border-b-0 border-transparent hover:border-b-2 hover:border-primary transition-all duration-[.4s]" href="#">
-                About
-            </a>
+        <div class="w-[90%] mt-10">
+            <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
+                <a href="{{ route('show.home') }}">Dashboard</a>
+            </div>
+            <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
+                <a href="/requests">Requests</a>
+            </div>
+            <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
+                <a href="{{ route('show.message') }}">Messaging</a>
+            </div>
+            <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
+                <a href="{{ route('show.home') }}">AI Chatbot</a>
+            </div>
+            <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
+                <a href="{{ route('show.about') }}">About</a>
+            </div>
         </div>
-
-        
     </div>
 </div>
 
 <script>
-    const burger = document.getElementById('burgerBtn');
-    const overlay = document.getElementById('overlay');
-    const backdrop = document.getElementById('backdrop');
+    let sidebar = document.querySelector(".sidebar");
+    let button = document.querySelector(".btn img");
+    let detail = document.getElementById('disappear');
 
-    function toggleMenu() {
-        overlay.classList.toggle('opacity-0');
-        overlay.classList.toggle('scale-x-0');
-        overlay.classList.toggle('pointer-events-none');
-        backdrop.classList.toggle('opacity-0');
-        backdrop.classList.toggle('pointer-events-none');
-    }
-
-    burger.addEventListener('click', toggleMenu);
-    backdrop.addEventListener('click', toggleMenu);
+    button.addEventListener('click', () => {
+        if (sidebar.style.width === "" || sidebar.style.width === "5em") {
+            // OPENING
+            const fullWidth = sidebar.scrollWidth;
+            sidebar.style.width = fullWidth + "px";
+            detail.style.opacity = "1";
+            button.style.transform = 'rotate(180deg)';
+            detail.style.transition = "opacity .3s ease-in, transform .3s ease-in";
+        } else {
+            // CLOSING
+            button.style.transform = 'rotate(0deg)';
+            sidebar.style.width = "5em";
+            detail.style.opacity = "0";
+        }
+    });
 </script>
+
+
+{{-- FIX THE LOGOUT BUTTON --}}

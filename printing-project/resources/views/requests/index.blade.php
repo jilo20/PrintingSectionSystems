@@ -75,6 +75,11 @@
                         </div>
 
                     <div class="flex justify-around mt-4 font-light">
+                        @if($requestform->status === 'In Progress')
+                            <p >Status: <span class="text-yellow-400 font-semibold"> {{ $requestform->status }} </span></p>
+                        @else
+                            <p >Status: <span class="text-green-700 font-semibold"> {{ $requestform->status }} </span></p>
+                        @endif
                         <p>Time in: {{ $requestform->timeIn ?? '—' }}</p>
                         <p>Time out: {{ $requestform->timeOut ?? '—' }}</p>
                     </div>
