@@ -12,23 +12,27 @@
                     {{ $request->department->deptName }}
                 </div>
                 <div class="grid grid-cols-2 border border-b-2 border-l-2 border-r-2">
-                    <p class="col-span-2">Requested by: Mr. John Leeroy Gadiane</p>
+                    <p class="col-span-2">Requested By: <span class="underline">{{ $request->requestedBy }}</span></p>
 
-                    <div class="flex flex-col text-center bg-green-200 truncate">
+                    <div class="flex flex-col text-center truncate">
                         <p>Descriptions:</p>
+                         <span class="underline text-sm h-4">
                         @foreach ($request->requestJobs as $job)
-                        <p>{{$job->description}}</p>
+                        <p>{{$job->description}}...</p>
                         @endforeach
+                        </span>
                     </div>
                     <div class="flex flex-col text-center">
                         <p>Forwarded Date:</p>
-                        <p>{{$request->date}}</p>
+                        <span class="underline text-sm">
+                        <p>{{$request->date}}</p></span>
                     </div>
-                    <div>
+                    <div class="mt-4">
                         <p>Forwarded By:</p>
-                        <p>{{ $request->forwardedBy }}</p>
+                        <span class="underline text-sm">
+                        <p>{{ $request->forwardedBy }}</p></span>
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <p>Status:</p>
                         <div>
                             <form action="{{ route('requestforms.complete', $request->requestFormId) }}" method="POST">
@@ -71,7 +75,7 @@
         </x-card>
     </div>
     <div class="flex flex-col gap-4 col-span-4">
-        <x-card>
+        <x-card class="flex flex-col items-center">
             <p class="font-extrabold text-green-800 text-3xl text-center mb-4">REVENUE CHART</p>
             <img src="{{asset('images/linegraph.jpg') }}" class="object-cover">
         </x-card>

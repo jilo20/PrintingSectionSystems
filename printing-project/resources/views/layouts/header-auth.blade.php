@@ -6,7 +6,8 @@
     ]
 @endphp
 
-<x-sidetab/>
+<div style="z-index: 100">
+<x-sidetab  class="z-50 relative"/>
 <header class="ml-20 h-20 border-b border-borderline px-4">
     <nav class="flex h-22 items-center justify-between h-full">
         <div class="flex items-center gap-5">
@@ -19,3 +20,4 @@
         </x-dropdown>
     </nav>
 </header>
+</div>

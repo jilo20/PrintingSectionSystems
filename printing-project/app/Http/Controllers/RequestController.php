@@ -16,10 +16,19 @@ class RequestController extends Controller
     public function index()
     {
         $departments = Department::all();
-        $requestforms = RequestForm::with('requestJobs')->get();
+        $user = Auth::user();
+
+        if ($user->role !== 0) {
+            $requestforms = RequestForm::with(['requestJobs','department'])
+                ->where('deptId', $user->deptId)
+                ->get();
+        } else {
+            $requestforms = RequestForm::with(['requestJobs','department'])->get();
+        }
 
         return view('requests.index', compact('requestforms', 'departments'));
     }
+
 
     /**
      * Show the form for creating a new resource.

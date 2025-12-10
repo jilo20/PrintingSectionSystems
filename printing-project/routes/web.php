@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RequestController;
 
@@ -27,3 +28,5 @@ Route::resource('requests', RequestController::class);
 Route::post('/requestforms/{id}/complete', [RequestController::class, 'markCompleted'])
     ->name('requestforms.complete');
 Route::get('/messaging', [HomeController::class,'showMessage'])->name('show.message');
+Route::post('/sendMessage', [MessageController::class,'sendMessage'])->name('sendMessage');
+Route::get('/messages/load/{userId}', [MessageController::class, 'loadMessages']);

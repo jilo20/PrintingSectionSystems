@@ -1,6 +1,9 @@
+@props([
+    'selected' => 0
+])
 
 
-<div class="bg-primary w-[5em] h-full py-4 px-4 origin-left sidebar overflow-hidden transition-all duration-500 fixed">
+<div class="bg-primary z-50 w-[5em] h-full py-4 px-4 origin-left sidebar overflow-hidden transition-all duration-500 fixed">
     <div class="w-full flex relative cursor-pointer btn">
         <img 
             src="{{ asset('images/menu.png') }}" 
@@ -24,7 +27,7 @@
         </div>
 
         <div class="w-[90%] mt-10">
-            <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
+            <div class="bg-transparent h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 @if($selected == 0) bg-yellow-300 @endif border-gray-100">
                 <a href="{{ route('show.home') }}">Dashboard</a>
             </div>
             <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
