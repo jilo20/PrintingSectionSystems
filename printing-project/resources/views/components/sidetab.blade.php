@@ -27,7 +27,7 @@
         </div>
 
         <div class="w-[90%] mt-10">
-            <div class="bg-transparent h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 @if($selected == 0) bg-yellow-300 @endif border-gray-100">
+            <div class="bg-transparent h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">
                 <a href="{{ route('show.home') }}">Dashboard</a>
             </div>
             <div class="h-16 flex items-center p-2 hover:pl-10 transition-all duration-500 text-gray-100 font-semibold border-b-2 border-gray-100">

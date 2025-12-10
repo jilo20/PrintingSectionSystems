@@ -1,7 +1,7 @@
 @include ('layouts.header-auth')
 
 <div class="ml-20 grid grid-cols-4 gap-6 p-6">
-    <x-card class="col-span-2 text-center sm:overflow-x-hidden flex flex-col gap-x-4 gap-y-2 row-span-2">
+    <x-card class="h-[39em] col-span-2 text-center sm:overflow-x-hidden flex flex-col gap-x-4 gap-y-2 row-span-2">
         <h4 class="font-extrabold text-3xl px-16 text-green-800">
             PENDING REQUESTS
         </h4>
@@ -35,13 +35,18 @@
                     <div class="mt-2">
                         <p>Status:</p>
                         <div>
+                            @if (Auth::user()->role == 0)
+                            
                             <form action="{{ route('requestforms.complete', $request->requestFormId) }}" method="POST">
                                 @csrf
                                 <button type="submit"
                                         class="bg-yellow-400 text-sm rounded-full p-2 hover:bg-green-600 hover:text-gray-200 transition-all duration-500">
-                                    {{ $request->status }}
+                                   <span id="status"> {{ $request->status }}</span>
                                 </button>
                             </form>
+                            @else
+                                <span id="status"> {{ $request->status }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>

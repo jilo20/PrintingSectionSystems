@@ -39,9 +39,12 @@
 </form>
 
 @if (session('success'))
-    <div class="bg-green-500 text-white p-3 rounded mt-2">
+<div class="flex justify-center items-center w-full bg-green-500">
+    <div class="  text-white p-3 rounded mt-2 font-bold text-lg text-center">
         {{ session('success') }}
     </div>
+</div>
+    
 @endif
 
 
