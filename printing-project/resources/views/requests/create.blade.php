@@ -47,7 +47,6 @@
     
 @endif
 
-
 <script>
     let jobstable = document.getElementById('jobs-table');
     let addjob = document.getElementById('add-job');
@@ -86,11 +85,13 @@
                     <option value="SORT">SORT</option>
                 </select>
                 <input type="text" name="description[]" class="description border p-1 col-span-2">
+                
             </div>
 
         `;
         jobstable.append(newjob);
     });
+
 
     document.addEventListener('change', function(e) {
         if (e.target && e.target.classList.contains('service_type')) {

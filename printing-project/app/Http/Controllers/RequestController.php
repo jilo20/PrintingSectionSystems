@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
+use App\Helpers\Computation;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,38 +53,50 @@ class RequestController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        // Step 1: create the request form
-        $form = RequestForm::create([
-            'requestedBy' => $request->requestedBy,
-            'forwardedBy' => $request->forwardedBy,
-            'deptId'      => auth()->user()->deptId, // or whatever
-            'date'        => now(),
-            'userId'        => Auth::user()->userId,
-            'status' => 'In Progress',
-            'timeIn' => now()
-            // totalCost later
+public function store(Request $request)
+{
+    $form = RequestForm::create([
+        'requestedBy' => $request->requestedBy,
+        'forwardedBy' => $request->forwardedBy,
+        'deptId'      => auth()->user()->deptId,
+        'date'        => now(),
+        'userId'      => Auth::user()->userId,
+        'status'      => 'In Progress',
+        'timeIn'      => now(),
+        'totalCost'   => 0,
+    ]);
+
+    $totalCost = 0;
+    $count = count($request->originals);
+
+    for ($i = 0; $i < $count; $i++) {
+        $jobCost = Computation::computeCost(
+            $request->originals[$i],
+            $request->copies[$i],
+            $request->isB2B[$i],
+            $request->paperType[$i],
+            $request->service_type[$i]
+        );
+
+        RequestJob::create([
+            'requestFormId' => $form->requestFormId,
+            'originals'     => $request->originals[$i],
+            'copies'        => $request->copies[$i],
+            'paperType'     => $request->paperType[$i],
+            'isB2B'         => $request->isB2B[$i],
+            'service_type'  => $request->service_type[$i],
+            'description'   => $request->description[$i],
+            'cost'          => $jobCost,
         ]);
 
-        // Step 2: loop through job arrays
-        $count = count($request->originals);
-
-        for ($i = 0; $i < $count; $i++) {
-            RequestJob::create([
-                'requestFormId' => $form->requestFormId,
-                'originals'     => $request->originals[$i],
-                'copies'        => $request->copies[$i],
-                'paperType'     => $request->paperType[$i],
-                'isB2B'         => $request->isB2B[$i],
-                'service_type'  => $request->service_type[$i],
-                'description'   => $request->description[$i],
-                'cost'          => 0, // calculate later
-            ]);
-        }
-
-        return redirect()->back()->with('success', 'Request created!');
+        $totalCost += $jobCost;
     }
+
+    $form->update(['totalCost' => $totalCost]);
+
+    return redirect()->back()->with('success', 'Request created!');
+}
+
 
 
 
